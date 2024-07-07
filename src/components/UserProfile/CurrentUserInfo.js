@@ -15,7 +15,11 @@ function CurrentUserInfo() {
       </div>
 
       <div className="flex flex-col justify-center items-center my-4 gap-4">
-       <Avatar size={20} avatar={avatar}/>
+        <img
+          className={`h-20 w-20 object-cover rounded-full`}
+          src={avatar}
+          alt=""
+        />
         <div className="text-base">Soni Kumari</div>
       </div>
 
@@ -24,12 +28,11 @@ function CurrentUserInfo() {
           <p className="text-gray-500 ">E-mail</p>
           <p>sonikm443@gmail.com</p>
         </div>
-        <div className="py-3">
+        <div className="pt-3">
           <p className="text-gray-500">Status</p>
           <p>Frontend Develoer</p>
         </div>
       </div>
-      <div className="w-full h-[1px] bg-gray-700"></div>
       <Settings />
       <div className="flex-1 flex justify-end flex-col">
         <button className="bg-dark-green rounded-lg p-2 hover:bg-[#03845b] text-white">

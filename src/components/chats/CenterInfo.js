@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import avatar from "../../assets/avatar.png";
 import currentUser from "../../assets/user.jpg";
 
 function CenterInfo() {
+  const chatRef = useRef(null);
+
+  useEffect(() => {
+    chatRef.current.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
   return (
     <div className="bg-secondary px-6 overflow-y-scroll  py-4 flex-1">
       <div className=" flex justify-center mb-4 items-center ">
@@ -83,6 +89,7 @@ function CenterInfo() {
             </div>
           </div>
         </div>
+        <div ref={chatRef}></div>
       </div>
     </div>
   );
