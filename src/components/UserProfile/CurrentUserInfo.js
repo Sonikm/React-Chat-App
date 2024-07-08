@@ -2,6 +2,8 @@ import React from "react";
 import avatar from "../../assets/user.jpg";
 import Settings from "../ui/Settings";
 import Avatar from "../ui/Avatar";
+import { signOut } from "firebase/auth";
+import { auth } from "../../utils/firebase";
 
 function CurrentUserInfo() {
   return (
@@ -35,7 +37,7 @@ function CurrentUserInfo() {
       </div>
       <Settings />
       <div className="flex-1 flex justify-end flex-col">
-        <button className="bg-dark-green rounded-lg p-2 hover:bg-[#03845b] text-white">
+        <button onClick={() => signOut(auth)} className="bg-dark-green rounded-lg p-2 hover:bg-[#03845b] text-white">
           Logout
         </button>
       </div>
