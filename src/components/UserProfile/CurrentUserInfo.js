@@ -4,8 +4,12 @@ import Settings from "../ui/Settings";
 import Avatar from "../ui/Avatar";
 import { signOut } from "firebase/auth";
 import { auth } from "../../utils/firebase";
+import { useFirebase } from "../../utils/firebaseContext";
 
 function CurrentUserInfo() {
+  const { currentUser } = useFirebase();
+
+  const { avatar, email, id, username } = currentUser;
   return (
     <div className="flex mb-4 gap-4 h-full text-white flex-col">
       <div className="flex  gap-4 justify-start items-center">
@@ -22,13 +26,13 @@ function CurrentUserInfo() {
           src={avatar}
           alt=""
         />
-        <div className="text-base">Soni Kumari</div>
+        <div className="text-base">{username}</div>
       </div>
 
       <div className="text-sm text-gray-300">
         <div className="">
           <p className="text-gray-500 ">E-mail</p>
-          <p>sonikm443@gmail.com</p>
+          <p>{email}</p>
         </div>
         <div className="pt-3">
           <p className="text-gray-500">Status</p>
@@ -37,7 +41,10 @@ function CurrentUserInfo() {
       </div>
       <Settings />
       <div className="flex-1 flex justify-end flex-col">
-        <button onClick={() => signOut(auth)} className="bg-dark-green rounded-lg p-2 hover:bg-[#03845b] text-white">
+        <button
+          onClick={() => signOut(auth)}
+          className="bg-dark-green rounded-lg p-2 hover:bg-[#03845b] text-white"
+        >
           Logout
         </button>
       </div>

@@ -4,13 +4,17 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { FirebaseProvider } from "./utils/firebaseContext";
+import { Provider } from "react-redux";
+import { store } from "./utils/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <FirebaseProvider>
-      <App />
-    </FirebaseProvider>
+    <Provider store={store}>
+      <FirebaseProvider>
+        <App />
+      </FirebaseProvider>
+    </Provider>
   </React.StrictMode>
 );
 

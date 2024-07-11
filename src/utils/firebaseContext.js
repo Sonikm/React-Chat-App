@@ -8,12 +8,14 @@ import {
 import {
   collection,
   doc,
+  getDoc,
   getDocs,
   query,
   setDoc,
   where,
 } from "firebase/firestore";
 import { toast } from "react-toastify";
+import { useUserStore } from "./userStore";
 
 const FirebaseContext = createContext(null);
 
@@ -57,21 +59,36 @@ async function signIn(email, password) {
     await signInWithEmailAndPassword(auth, email, password);
     console.log("Login successfully");
   } catch (err) {
-    console.log(err.message);
+    return toast.error(err.message);
   }
 }
 
 export const FirebaseProvider = (props) => {
+  const [addUser, setAddUser] = useState(false);
   const [user, setUser] = useState(null);
+  const { currentUser, isLoading, fetchUserInfo } = useUserStore();
+
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, async (user) => {
       setUser(user);
+      fetchUserInfo(user?.uid);
     });
 
     return () => unsub();
-  }, []);
+  }, [fetchUserInfo]);
+
   return (
-    <FirebaseContext.Provider value={{ signUp, signIn, user }}>
+    <FirebaseContext.Provider
+      value={{
+        signUp,
+        signIn,
+        user,
+        isLoading,
+        currentUser,
+        addUser,
+        setAddUser,
+      }}
+    >
       {props.children}
     </FirebaseContext.Provider>
   );

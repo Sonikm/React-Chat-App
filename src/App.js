@@ -5,22 +5,33 @@ import UserList from "./components/userList/UserList";
 import Login from "./components/login/Login";
 import { useFirebase } from "./utils/firebaseContext";
 import Notification from "./components/ui/Notification";
-import { ToastContainer } from "react-toastify";
+import AddUser from "./components/addUser/AddUser";
+import Loading from "./components/ui/Loading";
+import { useUserStore } from "./utils/userStore";
+import { useChatStore } from "./utils/chatStore";
 function App() {
-  const { user } = useFirebase();
+  const { user, addUser } = useFirebase();
+  const { currentUser, isLoading } = useUserStore();
+  const { chatId } = useChatStore();
+
+  if (isLoading) return <Loading />;
+
+  console.log(chatId)
 
   return (
     <div className="app flex overflow-hidden h-screen">
-      {!user ? (
+      {!currentUser ? (
         <Login />
       ) : (
         <>
           <LeftSidebar />
-          <Chats />
+          {chatId && <Chats />}
+
           <UserList />
+          {addUser && <AddUser />}
         </>
       )}
-      <Notification  />
+      <Notification />
     </div>
   );
 }

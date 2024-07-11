@@ -51,12 +51,16 @@ function Login() {
     e.preventDefault();
     const formData = new FormData(e.target);
     const { email, password } = Object.fromEntries(formData);
-    await signIn(email, password);
+    try {
+      await signIn(email, password);
+    } catch (err) {
+     return toast.error(err.message);
+    }
   }
 
   return (
     <div className="login ">
-      {/* <div className="item">
+      <div className="item">
         <h2>Welcome back</h2>
         <form onSubmit={handleLoginUser}>
           <input type="email" placeholder="Email" name="email" />
@@ -64,7 +68,7 @@ function Login() {
           <button className="bg-primary">Sign In</button>
         </form>
       </div>
-      <div className="separator border-r-2 "></div> */}
+      <div className="separator border-r-2 "></div>
       <div className="item">
         <h2>Create an Account</h2>
         <form onSubmit={handleSignupUser}>
@@ -83,7 +87,15 @@ function Login() {
           <input type="text" placeholder="Username" name="username" />
           <input type="email" placeholder="Email" name="email" />
           <input type="password" placeholder="Password" name="password" />
-          <button className={` ${isLoading ? "bg-green-700 cursor-none " :  'bg-primary cursor-pointer'}`}>{isLoading ? "Loading..." : "Sign Up"}</button>
+          <button
+            className={` ${
+              isLoading
+                ? "bg-green-700 cursor-none "
+                : "bg-primary cursor-pointer"
+            }`}
+          >
+            {isLoading ? "Loading..." : "Sign Up"}
+          </button>
         </form>
       </div>
     </div>
