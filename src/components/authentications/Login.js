@@ -1,13 +1,10 @@
-import {
-  GoogleAuthProvider,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "../../utils/firebase";
 import { toast } from "react-toastify";
+// import SignInWithGoogle from "../ui/SignInWithGoogle";
 
-function Login({setRegister}) {
+function Login({ setRegister }) {
   const [isLoading, setIsLoading] = useState(false);
 
   async function handleLogin(e) {
@@ -22,15 +19,6 @@ function Login({setRegister}) {
       toast.error(err.message);
     } finally {
       setIsLoading(false);
-    }
-  }
-
-  async function loginWithGoogle() {
-    const provider = new GoogleAuthProvider();
-    try {
-      await signInWithPopup(auth, provider);
-    } catch (error) {
-      toast.error("Failed to login with Google. Please try again.");
     }
   }
 
@@ -62,25 +50,14 @@ function Login({setRegister}) {
           </button>
         </form>
       </div>
-      <div className=" w-full max-w-[300px]  gap-2 my-8  h-[2px] flex justify-center items-center">
-        <span className="border-[1.4px] border-[--SECONDARY-COLOR] w-full"></span>
-        <span className="font-semibold">or</span>
-        <span className="border-[1.4px] border-[--SECONDARY-COLOR] w-full"></span>
-      </div>
-      <div
-        onClick={loginWithGoogle}
-        className="flex font-semibold cursor-pointer items-center justify-center gap-2 bg-[#0596682c] p-3  max-w-[300px] w-full rounded-lg"
-      >
-        Sign In with
-        <img
-          className="w-5"
-          src="https://cdn.iconscout.com/icon/free/png-512/free-google-160-189824.png?f=webp&w=512"
-          alt=""
-        />
-      </div>
-      <div className="">
+      
+      {/* <SignInWithGoogle/> */}
+      <div className="mt-4">
         Don't have an account?{" "}
-        <span onClick={()=> setRegister(true)} className="underline ml-1 font-semibold cursor-pointer">
+        <span
+          onClick={() => setRegister(true)}
+          className="underline ml-1 font-semibold cursor-pointer"
+        >
           Sign Up here
         </span>
       </div>
