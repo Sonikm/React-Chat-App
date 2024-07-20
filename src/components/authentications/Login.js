@@ -1,36 +1,18 @@
-import { useState } from "react";
-import "./login.css";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import React, { useState } from "react";
+import { auth } from "../../utils/firebase";
 import { toast } from "react-toastify";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { auth, db } from "../../utils/firebase";
-import image from "../../assets/avatar.png";
-import { collection, doc, getDocs, query, setDoc, where } from "firebase/firestore";
-import upload from "../../utils/upload";
+import Logo from "../ui/Logo";
+import chatPeople from "../../assets/chat-img.jpg";
 
 function Login() {
-  const [avatar, setAvatar] = useState({
-    file: null,
-    url: "",
-  });
-
   const [isLoading, setIsLoading] = useState(false);
-
-  function handleAvatar(e) {
-    if (e.target.files[0]) {
-      setAvatar({
-        file: e.target.files[0],
-        url: URL.createObjectURL(e.target.files[0]),
-      });
-    }
-  }
 
   async function handleLogin(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const { email, password } = Object.fromEntries(formData);
+    setIsLoading(true);
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast.success("Login successfully!");
@@ -41,85 +23,54 @@ function Login() {
     }
   }
 
-  async function handleRegister(e) {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const { username, email, password } = Object.fromEntries(formData);
-
-    // VALIDATE INPUTS
-    if (!username || !email || !password) {
-      return toast.warn("Please enter inputs!");
-    }
-    if (!avatar.file) return toast.warn("Please upload an avatar!");
-
-    // VALIDATE UNIQUE USERNAME
-    const userRef = collection(db, "users");
-    const q = query(userRef, where("username", "==", username))
-
-    const userSnapshot = await getDocs(q);
-   if(!userSnapshot.empty) return toast.warn("This username is already exist! Please create another username...");
-
-    try {
-      setIsLoading(true);
-      const imgUrl = await upload(avatar.file);
-      const res = await createUserWithEmailAndPassword(auth, email, password);
-      await setDoc(doc(db, "users", res.user.uid), {
-        username,
-        email,
-        avatar: imgUrl,
-        id: res.user.uid,
-        blocked: [],
-      });
-
-      await setDoc(doc(db, "userchats", res.user.uid), {
-        chats: [],
-      });
-
-      toast.success("Account created! You can login now.");
-    } catch (err) {
-      toast.error(err.message);
-      console.log(err.message);
-    } finally {
-      setIsLoading(false);
-    }
-  }
   return (
-    <div className="login">
-      <div className="item">
-        <h2>Welcome back</h2>
-        <form onSubmit={handleLogin}>
-          <input type="email" placeholder="Email" name="email" />
-          <input type="password" placeholder="Password" name="password" />
-          <button className="bg-primary" disabled={isLoading}>
-            {isLoading ? "Loading" : "Sign In"}
-          </button>
-        </form>
-      </div>
-      <div className="separator"></div>
-      <div className="item">
-        <h2>Create an Account</h2>
-        <form onSubmit={handleRegister}>
-          <label htmlFor="file">
-            <img src={avatar.url || image} alt="" />
-            Uplaod an image
-          </label>
-          <input
-            style={{ display: "none" }}
-            type="file"
-            id="file"
-            placeholder="File"
-            name="file"
-            onChange={handleAvatar}
-          />
-          <input type="text" placeholder="Username" name="username" />
-          <input type="email" placeholder="Email" name="email" />
-          <input type="password" placeholder="Password" name="password" />
-          <button className="bg-primary">
-            {isLoading ? "Loading" : "Sign Up"}
-          </button>
-        </form>
-      </div>
-    </div>
+        <div className="flex flex-col   w-full  justify-center items-center h-full gap-3">
+          <div className="flex flex-col max-w-[300px]  justify-center items-center mx-10 gap-4 w-full ">
+            <h2 className="text-3xl font-medium">Welcome back</h2>
+            <form
+              className="flex flex-col  gap-4 justify-start items-start w-full "
+              onSubmit={handleLogin}
+            >
+              <input
+                className="outline-none border-2 border-dark-green rounded-lg p-2 w-full"
+                type="email"
+                placeholder="Email"
+                name="email"
+              />
+              <input
+                className="outline-none border-2 border-dark-green rounded-lg p-2 w-full"
+                type="password"
+                placeholder="Password"
+                name="password"
+              />
+              <button
+                className="bg-primary hover:bg-dark-green outline-none border-none w-full p-3 px-4 text-white font-semibold flex-1 rounded-md "
+                disabled={isLoading}
+              >
+                {isLoading ? "Loading" : "Sign In"}
+              </button>
+            </form>
+          </div>
+          <div className=" w-full max-w-[300px]  gap-2 my-8  h-[2px] flex justify-center items-center">
+            <span className="border-[1.4px] border-[--SECONDARY-COLOR] w-full"></span>
+            <span className="font-semibold">or</span>
+            <span className="border-[1.4px] border-[--SECONDARY-COLOR] w-full"></span>
+          </div>
+          <div className="flex font-semibold cursor-pointer items-center justify-center gap-2 bg-[#0596682c] p-3  max-w-[300px] w-full rounded-lg">
+            Sign In with
+            <img
+              className="w-5"
+              src="https://cdn.iconscout.com/icon/free/png-512/free-google-160-189824.png?f=webp&w=512"
+              alt=""
+            />
+          </div>
+          <div className="">
+            Don't have an account?{" "}
+            <span className="underline ml-1 font-semibold cursor-pointer">
+              Sign Up here
+            </span>
+          </div>
+        </div>
   );
 }
 

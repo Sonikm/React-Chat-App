@@ -6,6 +6,7 @@ import useUserStore from "../../utils/userStore";
 import { signOut } from "firebase/auth";
 import { auth } from "../../utils/firebase";
 import useChatStore from "../../utils/chatStore";
+import Logo from "../ui/Logo";
 
 function CurrentUserInfo() {
   const { currentUser } = useUserStore();
@@ -18,13 +19,7 @@ function CurrentUserInfo() {
 
   return (
     <div className="flex mb-4 gap-4 h-full text-white flex-col">
-      <div className="flex  gap-4 justify-start items-center">
-        <div className="flex relative">
-          <div className="w-10 h-5 bg-[#33D299] rounded-xl"></div>
-          <div className="w-7 h-7 bg-dark-green rounded-full absolute -right-1 bottom-0"></div>
-        </div>
-        <div className="font-medium text-xl tracking-wider">Letschat</div>
-      </div>
+      <Logo />
 
       <div className="flex flex-col justify-center items-center my-4 gap-4">
         <img
