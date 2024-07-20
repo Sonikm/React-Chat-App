@@ -13,7 +13,7 @@ import {
 } from "firebase/firestore";
 import upload from "../../utils/upload";
 
-function Register() {
+function Register({setRegister}) {
   const [avatar, setAvatar] = useState({
     file: null,
     url: "",
@@ -126,7 +126,7 @@ function Register() {
 
       <div className="">
         Already have an account?{" "}
-        <span className="underline ml-1 font-semibold cursor-pointer">
+        <span onClick={() => setRegister(false)} className="underline ml-1 font-semibold cursor-pointer">
           Sign In here
         </span>
       </div>
@@ -136,26 +136,3 @@ function Register() {
 
 export default Register;
 
-// <div className="item">
-//   <h2>Create an Account</h2>
-//   <form onSubmit={handleRegister}>
-// <label htmlFor="file">
-//   <img src={avatar.url || image} alt="" />
-//   Uplaod an image
-// </label>
-// <input
-//   style={{ display: "none" }}
-//   type="file"
-//   id="file"
-//   placeholder="File"
-//   name="file"
-//   onChange={handleAvatar}
-// />
-//     <input type="text" placeholder="Username" name="username" />
-//     <input type="email" placeholder="Email" name="email" />
-//     <input type="password" placeholder="Password" name="password" />
-//     <button className="bg-primary">
-//       {isLoading ? "Loading" : "Sign Up"}
-//     </button>
-//   </form>
-// </div>

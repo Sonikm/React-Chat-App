@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
-import LeftSidebar from "./components/UserProfile/LeftSidebase";
 import Chats from "./components/chats/Chats";
 import UserList from "./components/userList/UserList";
-import Register from "./components/authentications/Register";
 import Notification from "./components/notification/Notification";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./utils/firebase";
 import useUserStore from "./utils/userStore";
 import useChatStore from "./utils/chatStore";
 import AuthenticateUser from "./components/authentications/AuthenticateUser";
+import UserProfileSidebar from "./components/UserProfile/UserProfileSidebar";
 function App() {
   const { currentUser, isLoading, fetchUserInfo } = useUserStore();
   const { chatId } = useChatStore();
@@ -32,7 +31,7 @@ function App() {
        <AuthenticateUser/>
       ) : (
         <>
-          <LeftSidebar />
+          <UserProfileSidebar />
           {chatId && <Chats />}
           <UserList />
         </>

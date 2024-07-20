@@ -54,7 +54,7 @@ function AddUser({ onHandleAddMode }) {
           return toast.warn("This user is already in your chat list. Please add a different user.");
         } else {
           setUser(newUser);
-          onHandleAddMode();
+          // onHandleAddMode();
         }
       } else {
         return toast.warn("The username you entered does not exist. Please try again with a different username.");

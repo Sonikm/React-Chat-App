@@ -1,7 +1,5 @@
 import React from "react";
-import avatar from "../../assets/user.jpg";
 import Settings from "../ui/Settings";
-import Avatar from "../ui/Avatar";
 import useUserStore from "../../utils/userStore";
 import { signOut } from "firebase/auth";
 import { auth } from "../../utils/firebase";

@@ -9,11 +9,12 @@ import useUserStore from "../../utils/userStore";
 import { db } from "../../utils/firebase";
 import plus from "../../assets/plus.png";
 import useChatStore from "../../utils/chatStore";
+import emptyChat from "../../assets/empty-chat.svg";
 
 function UserList() {
   const [addMode, setAddMode] = useState(false);
   const { currentUser } = useUserStore();
-  const { changeChat,  user} = useChatStore();
+  const { changeChat, user } = useChatStore();
   const [chats, setChats] = useState([]);
   const [input, setInput] = useState("");
 
@@ -70,7 +71,10 @@ function UserList() {
   );
 
   return (
-    <div style={{maxWidth: user ? "300px" : "100%" }} className="border-l border-secondary flex flex-1 flex-col gap-4">
+    <div
+      style={{ maxWidth: user ? "300px" : "100%" }}
+      className="border-l border-secondary flex flex-1 flex-col gap-4"
+    >
       <div className="flex  flex-col gap-2 p-4 pb-0">
         <h4 className="font-medium">Chat</h4>
         <div className="relative flex-1 flex  justify-between items-center">
@@ -82,11 +86,19 @@ function UserList() {
             type="text"
             placeholder="Search "
           />
-           <div  onClick={() => setAddMode(!addMode)} className="bg-primary hover:bg-[#0fa271] cursor-pointer flex justify-center items-center w-9 h-9 rounded-xl">
+          <div
+            onClick={() => setAddMode(!addMode)}
+            className="bg-primary hover:bg-[#0fa271] cursor-pointer flex justify-center items-center w-9 h-9 rounded-xl"
+          >
             <img className="w-5" src={plus} alt="" />
           </div>
         </div>
       </div>
+      {!chats && (
+        <div className="overflow-hidden object-cover flex justify-center items-center">
+          <img className="max-w-[400px] opacity-35" src={emptyChat} alt="" />
+        </div>
+      )}
       <div className="flex flex-col gap-1 overflow-y-scroll px-3">
         {filteredChats.map((chat) => (
           <User
