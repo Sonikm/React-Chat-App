@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import searchIcon from "../../assets/search-icon.png";
-import sort from "../../assets/sort.png";
-import avatar from "../../assets/avatar.png";
 import User from "./User";
 import AddUser from "./addUser/AddUser";
 import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
 import useUserStore from "../../utils/userStore";
 import { db } from "../../utils/firebase";
 import plus from "../../assets/plus.png";
+import minus from "../../assets/minus.png";
 import useChatStore from "../../utils/chatStore";
 import emptyChat from "../../assets/empty-chat.svg";
 
@@ -24,7 +23,7 @@ function UserList() {
       async (res) => {
         const items = res.data()?.chats;
 
-        const promisses = items.map(async (item) => {
+        const promisses = items?.map(async (item) => {
           const userDocRef = doc(db, "users", item.receiverId);
           const userDocSnap = await getDoc(userDocRef);
 
@@ -90,17 +89,17 @@ function UserList() {
             onClick={() => setAddMode(!addMode)}
             className="bg-primary hover:bg-[#0fa271] cursor-pointer flex justify-center items-center w-9 h-9 rounded-xl"
           >
-            <img className="w-5" src={plus} alt="" />
+            <img className="w-5" src={addMode ? minus : plus} alt="" />
           </div>
         </div>
       </div>
-      {!chats && (
+      {filteredChats.length === 0 && (
         <div className="overflow-hidden object-cover flex justify-center items-center">
           <img className="max-w-[400px] opacity-35" src={emptyChat} alt="" />
         </div>
       )}
       <div className="flex flex-col gap-1 overflow-y-scroll px-3">
-        {filteredChats.map((chat) => (
+        {filteredChats?.map((chat) => (
           <User
             key={chat.chatId}
             user

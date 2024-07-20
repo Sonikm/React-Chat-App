@@ -1,6 +1,7 @@
 import React from "react";
 import avatar from "../../assets/avatar.png";
 import useChatStore from "../../utils/chatStore";
+import { format } from "timeago.js";
 
 function User({ chat, onHandleSelectChat }) {
   const {user} = useChatStore();
@@ -13,7 +14,7 @@ function User({ chat, onHandleSelectChat }) {
         }`,
       }}
       onClick={onHandleSelectChat}
-      className="hover:!bg-secondary cursor-pointer px-3 p-2 rounded-md gap-4 flex justify-between items-center"
+      className={`${chat.isSeen ? "hover:!bg-secondary bg-transparent " : " bg-[var(--PRIMARY-COLOR)] " } cursor-pointer px-3 p-2 rounded-md gap-4 flex justify-between items-center`}
     >
       <div className="text-sm flex gap-2 items-center justify-center">
         <img
@@ -30,7 +31,7 @@ function User({ chat, onHandleSelectChat }) {
           </p>
         </div>
       </div>
-      <div className="text-gray-500 text-sm whitespace-nowrap">07:14 AM</div>
+      <div className="text-gray-500 text-sm whitespace-nowrap">{format(chat?.updatedAt)}</div>
     </div>
   );
 }

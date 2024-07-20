@@ -19,11 +19,11 @@ function TopInfo() {
             src={user?.avatar || avatar}
             alt=""
           />
-          <div className="flex flex-col ">
+          <div className="flex flex-col overflow-hidden text-ellipsis ">
             <p className="font-bold">{user?.username}</p>
             <div className="flex items-center gap-1">
              {/* <div className="w-[5px] h-[5px] rounded-full bg-primary"></div> */}
-            <p>Lorem ipsum dolor sit amet.</p>
+            <p className=" whitespace-nowrap">Lorem ipsum dolor sit amet.</p>
             </div>
           </div>
         </div>
