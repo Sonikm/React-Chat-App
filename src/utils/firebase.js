@@ -1,20 +1,21 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+import { getFirestore } from "firebase/firestore";
 
+// Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_API_KEY,
-  authDomain: "react-chat-app-c6859.firebaseapp.com",
-  projectId: "react-chat-app-c6859",
-  storageBucket: "react-chat-app-c6859.appspot.com",
-  messagingSenderId: "853821387187",
-  appId: "1:853821387187:web:569a5c8c6d853c4f171bc6",
-  measurementId: "G-0V3Q2SQ15V"
+  apiKey: "AIzaSyD4xvhz4okXsea3PhJKHdUjrApUmIjobC4",
+  authDomain: "live-chat-d77f5.firebaseapp.com",
+  projectId: "live-chat-d77f5",
+  storageBucket: "live-chat-d77f5.appspot.com",
+  messagingSenderId: "413959372577",
+  appId: "1:413959372577:web:5361f185df1caba0040860"
 };
 
 // Initialize Firebase
-export const firebase = initializeApp(firebaseConfig); 
-export const auth = getAuth(firebase);
-export const db = getFirestore(firebase);
-export const storage = getStorage(firebase);
+const app = initializeApp(firebaseConfig);
+
+export const auth = getAuth();
+export const db = getFirestore();
+export const storage = getStorage();
