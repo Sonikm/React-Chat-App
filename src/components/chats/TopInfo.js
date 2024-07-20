@@ -5,23 +5,25 @@ import phone from "../../assets/call.png";
 import video from "../../assets/video.png";
 import option from "../../assets/more.png";
 import SearchMessage from "../ui/SearchMessage";
+import useChatStore from "../../utils/chatStore";
 
 function TopInfo() {
+  const {user} = useChatStore()
   return (
     <div className="text-black  flex flex-col ">
       {/* <SearchMessage/> */}
       <div className="border-t flex  justify-between items-center px-4 py-3  border-gray-200">
-        <div className="flex text-sm items-center gap-4">
+        <div className="flex text-sm items-cener gap-4">
           <img
-            className={`h-8 w-8 object-cover rounded-full`}
-            src={avatar}
+            className={`h-10 w-10 object-cover rounded-full`}
+            src={user?.avatar || avatar}
             alt=""
           />
           <div className="flex flex-col ">
-            <p className="font-bold">James Tariff</p>
+            <p className="font-bold">{user?.username}</p>
             <div className="flex items-center gap-1">
-             <div className="w-[5px] h-[5px] rounded-full bg-primary"></div>
-            <p>Online</p>
+             {/* <div className="w-[5px] h-[5px] rounded-full bg-primary"></div> */}
+            <p>Lorem ipsum dolor sit amet.</p>
             </div>
           </div>
         </div>

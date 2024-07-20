@@ -28,7 +28,7 @@
         border: none;
         outline: none;
         /* background-color: rgba(17, 25, 40, 0.6); */
-        color: white;
+        color: black;
         border-radius: 5px;
         border: 2px solid rgba(143, 142, 142, 0.8);
 
@@ -64,7 +64,7 @@
 
       &:disabled {
         cursor: not-allowed;
-        background-color: #1a73e8bc;
+        /* background-color: #1a73e8bc; */
       }
     }
   }
@@ -72,6 +72,6 @@
   .separator {
     height: 80%;
     width: 2px;
-    /* background-color: #dddddd35; */
+    background-color: #77767635;
   }
 }
