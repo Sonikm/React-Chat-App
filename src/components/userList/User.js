@@ -16,10 +16,10 @@ function User({ chat, onHandleSelectChat, isShowChats, screenWidth }) {
               : chat.isSeen
               ? "bg-transparent"
               : "bg-primary"
-          } hover:bg-secondary   py-1 h-16 w-16 cursor-pointer flex justify-center items-center  rounded-full `}
+          } hover:bg-secondary   py-1 h-14 w-14 xs:h-16 xs:w-16 cursor-pointer flex justify-center items-center  rounded-full `}
         >
           <img
-            className={`h-12 w-12 object-cover rounded-full  `}
+            className={`xs:h-12 h-10 xs:w-12 w-10 object-cover rounded-full  `}
             src={chat?.user?.avatar || avatar}
             alt=""
           />

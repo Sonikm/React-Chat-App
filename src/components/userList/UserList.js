@@ -23,7 +23,6 @@ function UserList() {
   useEffect(() => {
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
-      console.log(isShowChats);
       if (window.innerWidth > 640) {
         setIsShowChats(false);
       } else {
@@ -109,7 +108,7 @@ function UserList() {
           <div
             className={`${
               user && !isShowChats ? "  hidden sm:block " : ""
-            } flex-col gap-2 p-4 pb-0 mb-2`}
+            } ${(screenWidth <= 1024 && !user)? "ml-14" : ""}  flex-col gap-2 p-4 pb-0 mb-2`}
           >
             <h4
               className={`${
@@ -147,8 +146,8 @@ function UserList() {
           <div
             onClick={handleShowUserList}
             className={`${
-              !user ? "hidden " : " block absolute top-0 right-5 "
-            } w-12  h-12 p-2 rounded-lg flex sm:hidden  justify-center items-center my-5 cursor-pointer bg-primary`}
+              !user ? "hidden " : " block absolute top-0 xs:right-5 right-4 "
+            } xs:w-12 w-9  xs:h-12 h-9 p-2 rounded-lg flex sm:hidden  justify-center items-center my-5 cursor-pointer bg-primary`}
           >
             <img src={comment} alt="" />
           </div>
@@ -164,8 +163,8 @@ function UserList() {
           )}
           <div
             className={` ${
-              screenWidth <= 640 && !isShowChats && user ? " mt-20 " : ""
-            } flex flex-col gap-1 overflow-y-scroll  `}
+              screenWidth <= 640 && !isShowChats && user ? " mt-16 xs:mt-20 " : ""
+            } flex flex-col xs:gap-1  overflow-y-scroll  `}
           >
             {filteredChats?.map((chat) => (
               <User

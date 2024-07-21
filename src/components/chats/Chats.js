@@ -3,12 +3,12 @@ import TopInfo from "./TopInfo";
 import BottomInfo from "./BottomInfo";
 import CenterInfo from "./CenterInfo";
 
-function Chats() {
+function Chats({toggleCurrentUser, screenWidth}) {
   const [isLoadingSendMsg, setIsLoadingSendMsg] = useState(false);
 
   return (
     <div className="flex flex-grow flex-col overflow-hidden">
-      <TopInfo />
+      <TopInfo toggleCurrentUser={toggleCurrentUser} screenWidth={screenWidth} />
       <CenterInfo />
       <BottomInfo isLoadingSendMsg={isLoadingSendMsg} setIsLoadingSendMsg={setIsLoadingSendMsg} />
     </div>

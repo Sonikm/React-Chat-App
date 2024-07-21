@@ -16,7 +16,7 @@ function CurrentUserInfo() {
   }
 
   return (
-    <div className="flex mb-4 gap-4 h-full text-white flex-col">
+    <div className="flex transition-all  mb-4 gap-4 h-full text-white flex-col">
       <Logo />
 
       <div className="flex flex-col justify-center items-center my-4 gap-4">

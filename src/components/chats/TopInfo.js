@@ -6,12 +6,12 @@ import video from "../../assets/video.png";
 import option from "../../assets/more.png";
 import useChatStore from "../../utils/chatStore";
 
-function TopInfo() {
+function TopInfo({toggleCurrentUser}) {
   const { user } = useChatStore();
   return (
     <div className="text-black  flex flex-col ">
       <div className="border-t flex  justify-between items-center px-4 py-3  border-gray-200">
-        <div className="flex text-sm items-cener gap-4">
+        <div className={`${!toggleCurrentUser  ? "ml-14" : ""} flex text-sm items-cener gap-4`}>
           <img
             className={`h-10 w-10 object-cover rounded-full`}
             src={user?.avatar || avatar}
@@ -19,13 +19,13 @@ function TopInfo() {
           />
           <div className="flex flex-col overflow-hidden text-ellipsis ">
             <p className="font-bold">{user?.username}</p>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 overflow-hidden overflow-ellipsis">
               {/* <div className="w-[5px] h-[5px] rounded-full bg-primary"></div> */}
-              <p className=" whitespace-nowrap">Lorem ipsum dolor sit amet.</p>
+              <p className=" whitespace-nowrap  xs:max-w-full">Lorem ipsum dolor sit amet.</p>
             </div>
           </div>
         </div>
-        <div className="flex items-center">
+        <div className="xs:flex items-center hidden xs:block">
             <Icon icon={search} />
             <Icon icon={phone} />
             <Icon icon={video} />
@@ -40,7 +40,7 @@ export default TopInfo;
 
 function Icon({ icon }) {
   return (
-    <div className="hover:bg-secondary rounded-full p-2 cursor-pointer">
+    <div className="hover:bg-secondary rounded-full xs:p-2 p-1  cursor-pointer">
       <img className="w-5 cursor-pointer" src={icon} alt="" />
     </div>
   );

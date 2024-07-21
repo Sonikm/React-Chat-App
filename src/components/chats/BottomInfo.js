@@ -89,11 +89,11 @@ function BottomInfo({ setIsLoadingSendMsg, isLoadingSendMsg }) {
   }
 
   return (
-    <div className="px-4 py-3 flex gap-4 justify-between items-center z-50 ">
+    <div className="px-4 z-20 py-3 flex gap-2 sm:gap-4 justify-between items-center ">
       <div className="bg-secondary relative justify-between items-center p-3 px-4 flex flex-1  rounded-xl gap-4 ">
         {img.url && (
           <div className="absolute  bottom-12 left-10 p-2 flex justify-center items-center rounded-md bg-dark-green ">
-            <img className="w-[200px] object-cover " src={img.url} alt="" />
+            <img className="w-[150px] xs:w-[200px] object-cover " src={img.url} alt="" />
           </div>
         )}
         <input
@@ -101,7 +101,7 @@ function BottomInfo({ setIsLoadingSendMsg, isLoadingSendMsg }) {
           onChange={(e) => setText(e.target.value)}
           className={`${
             isLoadingSendMsg ? "cursor-not-allowed" : "cursor-text"
-          } outline-none flex-1 pl-7 bg-secondary border-none placeholder:text-gray-500`}
+          } max-w-[150px]  xs:w-full outline-none flex-1 pl-7 bg-secondary border-none placeholder:text-gray-500`}
           type="text"
           placeholder={`${
             isLoadingSendMsg ? "Sending..." : "Type your message here"
@@ -127,14 +127,14 @@ function BottomInfo({ setIsLoadingSendMsg, isLoadingSendMsg }) {
         id="file"
         style={{ display: "none" }}
       />
-      <div className="relative">
+      <div>
         <img
           onClick={() => setOpen(!open)}
           className="w-6 h-6 cursor-pointer"
           src={emoji}
           alt=""
         />
-        <div className="absolute bottom-14 right-0">
+        <div>
           <EmojiPicker onEmojiClick={handleEmoji} className=" " open={open} />
         </div>
       </div>
