@@ -78,7 +78,7 @@ function Register({setRegister}) {
   return (
     <div className="flex flex-col   w-full  justify-center items-center h-full gap-3">
       <div className="flex flex-col max-w-[300px]  justify-start items-center mx-10 gap-4 w-full ">
-        <h2 className="text-3xl font-medium mb-2">Create an Account</h2>
+        <h2 className="text-3xl font-medium mb-2 whitespace-nowrap">Create an Account</h2>
         <form
           className="flex flex-col  gap-4 justify-start items-start w-full "
           onSubmit={handleRegister}

@@ -2,7 +2,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "../../utils/firebase";
 import { toast } from "react-toastify";
-// import SignInWithGoogle from "../ui/SignInWithGoogle";
+import SignInWithGoogle from "../ui/SignInWithGoogle";
 
 function Login({ setRegister }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -51,12 +51,12 @@ function Login({ setRegister }) {
         </form>
       </div>
       
-      {/* <SignInWithGoogle/> */}
-      <div className="mt-4">
+      <SignInWithGoogle/>
+      <div className="mt-4 text-center">
         Don't have an account?{" "}
         <span
           onClick={() => setRegister(true)}
-          className="underline ml-1 font-semibold cursor-pointer"
+          className="underline whitespace-nowrap  ml-1 font-semibold cursor-pointer"
         >
           Sign Up here
         </span>

@@ -6,6 +6,10 @@ module.exports = {
       fontFamily: {
         roboto: "Roboto",
       },
+      screens: {
+        'xs': '420px',
+        // => @media (min-width: 420px) { ... }
+      },
       colors: {
         primary: "#10B982",
         secondary: "#EBEEF3",
