@@ -1,16 +1,12 @@
 import React, { useEffect } from "react";
-import Chats from "./components/chats/Chats";
-import UserList from "./components/userList/UserList";
 import Notification from "./components/notification/Notification";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./utils/firebase";
 import useUserStore from "./utils/userStore";
-import useChatStore from "./utils/chatStore";
 import AuthenticateUser from "./components/authentications/AuthenticateUser";
-import UserProfileSidebar from "./components/UserProfile/UserProfileSidebar";
+import ChatScreen from "./page/ChatScreen";
 function App() {
   const { currentUser, isLoading, fetchUserInfo } = useUserStore();
-  const { chatId } = useChatStore();
 
   useEffect(() => {
     const unSub = onAuthStateChanged(auth, (user) => {
@@ -26,16 +22,8 @@ function App() {
     );
 
   return (
-    <div className="app flex  h-screen ">
-      {!currentUser ? (
-       <AuthenticateUser/>
-      ) : (
-        <>
-          <UserProfileSidebar />
-          {chatId && <Chats />}
-          <UserList />
-        </>
-      )}
+    <div className="app flex  h-screen overflow-hidden ">
+      {!currentUser ? <AuthenticateUser /> : <ChatScreen />}
       <Notification />
     </div>
   );

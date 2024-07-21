@@ -1,28 +1,28 @@
-import { signInWithPopup } from 'firebase/auth';
-import { GoogleAuthProvider } from 'firebase/auth/web-extension';
-import React from 'react'
-import { auth } from '../../utils/firebase';
-import { toast } from 'react-toastify';
+import { signInWithPopup } from "firebase/auth";
+import React from "react";
+import { auth, provider } from "../../utils/firebase";
+import { toast } from "react-toastify";
 
 function SignInWithGoogle() {
-    async function loginWithGoogle() {
-        const provider = new GoogleAuthProvider();
-        try {
-          await signInWithPopup(auth, provider);
-        } catch (error) {
-          toast.error("Failed to login with Google. Please try again.");
-        }
-      }
-    
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log("User Info:", user);
+    } catch (error) {
+      console.error("Error during sign-in:", error);
+    }
+  };
+
   return (
-   <div className='w-full flex flex-col justify-center items-center'>
-       <div className=" w-full max-w-[300px]  gap-2 my-8  h-[2px] flex justify-center items-center">
+    <div className="w-full flex flex-col justify-center items-center">
+      <div className=" w-full max-w-[300px]  gap-2 my-8  h-[2px] flex justify-center items-center">
         <span className="border-[1.4px] border-[--SECONDARY-COLOR] w-full"></span>
         <span className="font-semibold">or</span>
         <span className="border-[1.4px] border-[--SECONDARY-COLOR] w-full"></span>
       </div>
       <div
-        onClick={loginWithGoogle}
+        onClick={handleGoogleSignIn}
         className="flex font-semibold cursor-pointer items-center justify-center gap-2 bg-[#0596682c] p-3  max-w-[300px] w-full rounded-lg"
       >
         Sign In with
@@ -32,8 +32,8 @@ function SignInWithGoogle() {
           alt=""
         />
       </div>
-   </div>
-  )
+    </div>
+  );
 }
 
-export default SignInWithGoogle
+export default SignInWithGoogle;
