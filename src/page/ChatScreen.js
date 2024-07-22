@@ -34,7 +34,7 @@ function handleToggleCurrentUserProfile(){
     <div className="app flex  h-screen overflow-hidden relative">
       <ToggleCurrentUserProfile onHandleToggleCurrentUserProfile={handleToggleCurrentUserProfile} toggleCurrentUser={toggleCurrentUser} screenWidth={screenWidth}/>
       <UserProfileSidebar screenWidth={screenWidth} toggleCurrentUser={toggleCurrentUser} />
-      {chatId && <Chats toggleCurrentUser={toggleCurrentUser} onHandleToggleCurrentUserProfile={handleToggleCurrentUserProfile}  />}
+      {chatId && <Chats toggleCurrentUser={toggleCurrentUser} screenWidth={screenWidth} onHandleToggleCurrentUserProfile={handleToggleCurrentUserProfile}  />}
       <UserList setToggleCurrentUser={setToggleCurrentUser} />
     </div>
   );

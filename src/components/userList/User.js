@@ -58,7 +58,7 @@ function User({ chat, onHandleSelectChat, isShowChats, screenWidth }) {
             </div>
           </div>
           <div className="text-gray-500 text-sm whitespace-nowrap">
-            {format(chat?.updatedAt)}
+            <span>{format(chat?.updatedAt)}</span>
           </div>
         </div>
       )}

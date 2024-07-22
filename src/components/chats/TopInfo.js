@@ -6,12 +6,12 @@ import video from "../../assets/video.png";
 import option from "../../assets/more.png";
 import useChatStore from "../../utils/chatStore";
 
-function TopInfo({toggleCurrentUser}) {
+function TopInfo({toggleCurrentUser, screenWidth}) {
   const { user } = useChatStore();
   return (
     <div className="text-black  flex flex-col ">
       <div className="border-t flex  justify-between items-center px-4 py-3  border-gray-200">
-        <div className={`${!toggleCurrentUser  ? "ml-14" : ""} flex text-sm items-cener gap-4`}>
+        <div className={`${!toggleCurrentUser && screenWidth <= 1024 ? "ml-14" : ""} flex text-sm items-cener gap-4`}>
           <img
             className={`h-10 w-10 object-cover rounded-full`}
             src={user?.avatar || avatar}

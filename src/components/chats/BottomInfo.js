@@ -101,7 +101,7 @@ function BottomInfo({ setIsLoadingSendMsg, isLoadingSendMsg }) {
           onChange={(e) => setText(e.target.value)}
           className={`${
             isLoadingSendMsg ? "cursor-not-allowed" : "cursor-text"
-          } max-w-[150px]  xs:w-full outline-none flex-1 pl-7 bg-secondary border-none placeholder:text-gray-500`}
+          } max-w-[150px]  xs:max-w-full outline-none flex-1 pl-7 bg-secondary border-none placeholder:text-gray-500`}
           type="text"
           placeholder={`${
             isLoadingSendMsg ? "Sending..." : "Type your message here"
@@ -134,8 +134,8 @@ function BottomInfo({ setIsLoadingSendMsg, isLoadingSendMsg }) {
           src={emoji}
           alt=""
         />
-        <div>
-          <EmojiPicker onEmojiClick={handleEmoji} className=" " open={open} />
+        <div className="absolute right-0 bottom-20 ">
+          <EmojiPicker onEmojiClick={handleEmoji} className=" max-w-[280px] xs:max-w-[300px] sm:max-w-full max-h-[400px] xs:max-h-full" open={open} />
         </div>
       </div>
     </div>

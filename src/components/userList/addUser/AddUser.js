@@ -101,6 +101,7 @@ function AddUser({ onHandleAddMode }) {
       });
 
       toast.success("User added successfully! You can now start chatting.");
+      onHandleAddMode();
     } catch (err) {
       console.log(err.message);
       toast.error("An error occurred while adding the user. Please try again.");
@@ -108,17 +109,17 @@ function AddUser({ onHandleAddMode }) {
   }
 
   return (
-    <div className="absolute h-[max-content] w-[max-content] m-auto  bottom-0 top-0 left-0 right-0 flex justify-center items-center">
-      <div className="bg-black flex flex-col gap-8  p-10 z-50 rounded-xl justify-center">
-        <form onSubmit={handleSearch} className="flex items-center gap-4">
+    <div className="absolute h-[max-content]  w-[max-content] m-auto  bottom-0 top-0 left-0 right-0 flex justify-center items-center">
+      <div className="bg-black flex flex-col gap-8  p-4 xs:p-10 z-50 rounded-xl justify-center">
+        <form onSubmit={handleSearch} className="flex items-center xs:gap-4 gap-2 ">
           <input
             name="username"
-            className="outline-none border-secondary border rounded-lg p-4 "
+            className="outline-none border-secondary border rounded-lg xs:p-4 p-3  "
             type="text"
             alt=""
             placeholder="Search name"
           />
-          <button className="bg-primary text-white p-4 rounded-lg">
+          <button className="bg-primary text-white xs:p-4 p-3 rounded-lg">
             Search
           </button>
         </form>
