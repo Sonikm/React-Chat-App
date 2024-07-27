@@ -45,7 +45,7 @@ function CenterInfo() {
               alignSelf: message?.senderId === currentUser.id ? "end" : "start",
             }}
             key={message?.createdAt}
-            className="flex flex-col gap-2 max-w-[50%] messsage own"
+            className="flex flex-col gap-2  xs:max-w-[60%] sm:max-w-[50%] max-w-[90%]  messsage own"
           >
             <div className="texts flex flex-col gap-1">
               {message?.img && (
@@ -71,9 +71,9 @@ function CenterInfo() {
             <div className="text-sm text-gray-500 gap-2">
               {message?.senderId === currentUser.id ? (
                 <div className="flex justify-between items-center gap-2 text-sm text-gray-500">
-                  <div className="flex gap-1 flex-1 items-center">
+                  <div className="flex gap-1 flex-1  items-center">
                     <img
-                      className={`h-6 w-6 object-cover rounded-full`}
+                      className={`h-6 w-6 flex-none object-cover rounded-full`}
                       src={currentUser.avatar}
                       alt=""
                     />

@@ -28,7 +28,7 @@ function AddUser({ onHandleAddMode }) {
 
     // Check if the username is the same as the current user's username
     if (username === currentUser.username) {
-      return toast.warn("The username you entered does not exist. Please try again with a different username.");
+      return toast.warn("This username is doesn't exist. Search another username.");
     }
 
     try {
@@ -51,13 +51,13 @@ function AddUser({ onHandleAddMode }) {
           .chats.some((chat) => chat.receiverId === newUser.id);
 
         if (isUserExist) {
-          return toast.warn("This user is already in your chat list. Please add a different user.");
+          return toast.warn("Already in your chat. Please add a different user.");
         } else {
           setUser(newUser);
           // onHandleAddMode();
         }
       } else {
-        return toast.warn("The username you entered does not exist. Please try again with a different username.");
+         return toast.warn("This username is doesn't exist. Search another username.");
       }
     } catch (err) {
       console.log(err.message);

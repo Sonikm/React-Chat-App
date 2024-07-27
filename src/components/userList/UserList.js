@@ -164,7 +164,7 @@ function UserList() {
           <div
             className={` ${
               screenWidth <= 640 && !isShowChats && user ? " mt-16 xs:mt-20 " : ""
-            } flex flex-col xs:gap-1  overflow-y-scroll  `}
+            } flex flex-col xs:gap-1  overflow-y-scroll px-3 `}
           >
             {filteredChats?.map((chat) => (
               <User

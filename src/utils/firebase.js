@@ -2,10 +2,11 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
+import { API_KEY } from "./secrete";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyD4xvhz4okXsea3PhJKHdUjrApUmIjobC4",
+  apiKey: API_KEY,
   authDomain: "live-chat-d77f5.firebaseapp.com",
   projectId: "live-chat-d77f5",
   storageBucket: "live-chat-d77f5.appspot.com",

@@ -43,15 +43,16 @@ function Login({ setRegister }) {
             name="password"
           />
           <button
-            className="bg-primary hover:bg-dark-green outline-none border-none w-full p-3 px-4 text-white font-semibold flex-1 rounded-md "
-            disabled={isLoading}
+            className={`${
+              isLoading ? "cursor-not-allowed" : "cursor-pointer"
+            } bg-primary hover:bg-dark-green outline-none border-none w-full p-3 px-4 text-white font-semibold flex-1 rounded-md`}
           >
             {isLoading ? "Loading" : "Sign In"}
           </button>
         </form>
       </div>
-      
-      <SignInWithGoogle/>
+
+      <SignInWithGoogle />
       <div className="mt-4 text-center">
         Don't have an account?{" "}
         <span

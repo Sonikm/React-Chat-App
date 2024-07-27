@@ -44,7 +44,7 @@ function User({ chat, onHandleSelectChat, isShowChats, screenWidth }) {
         >
           <div className="text-sm flex gap-2 items-center justify-center">
             <img
-              className={`h-9 w-9 object-cover rounded-full`}
+              className={`h-9 w-9 object-cover rounded-full flex-none`}
               src={chat?.user?.avatar || avatar}
               alt=""
             />

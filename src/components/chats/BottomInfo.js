@@ -101,7 +101,7 @@ function BottomInfo({ setIsLoadingSendMsg, isLoadingSendMsg }) {
           onChange={(e) => setText(e.target.value)}
           className={`${
             isLoadingSendMsg ? "cursor-not-allowed" : "cursor-text"
-          } max-w-[150px]  xs:max-w-full outline-none flex-1 pl-7 bg-secondary border-none placeholder:text-gray-500`}
+          } max-w-[150px]  px-14 xs:max-w-full outline-none flex-1 pl-7 bg-secondary border-none placeholder:text-gray-500`}
           type="text"
           placeholder={`${
             isLoadingSendMsg ? "Sending..." : "Type your message here"

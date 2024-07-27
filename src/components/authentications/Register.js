@@ -13,7 +13,7 @@ import {
 } from "firebase/firestore";
 import upload from "../../utils/upload";
 
-function Register({setRegister}) {
+function Register({ setRegister }) {
   const [avatar, setAvatar] = useState({
     file: null,
     url: "",
@@ -47,9 +47,7 @@ function Register({setRegister}) {
 
     const userSnapshot = await getDocs(q);
     if (!userSnapshot.empty)
-      return toast.warn(
-        "This username is already exist! Please create another username..."
-      );
+      return toast.warn("This username is already exist!");
 
     try {
       setIsLoading(true);
@@ -67,7 +65,7 @@ function Register({setRegister}) {
         chats: [],
       });
 
-      toast.success("Account created! You can login now.");
+      toast.success("Account created successfully!");
     } catch (err) {
       toast.error(err.message);
       console.log(err.message);
@@ -78,7 +76,9 @@ function Register({setRegister}) {
   return (
     <div className="flex flex-col   w-full  justify-center items-center h-full gap-3">
       <div className="flex flex-col max-w-[300px]  justify-start items-center mx-10 gap-4 w-full ">
-        <h2 className="text-3xl font-medium mb-2 whitespace-nowrap">Create an Account</h2>
+        <h2 className="text-3xl font-medium mb-2 whitespace-nowrap">
+          Create an Account
+        </h2>
         <form
           className="flex flex-col  gap-4 justify-start items-start w-full "
           onSubmit={handleRegister}
@@ -102,7 +102,12 @@ function Register({setRegister}) {
             name="file"
             onChange={handleAvatar}
           />
-          <input className="outline-none border-2 border-dark-green rounded-lg p-2 w-full" type="text" placeholder="Username" name="username" />
+          <input
+            className="outline-none border-2 border-dark-green rounded-lg p-2 w-full"
+            type="text"
+            placeholder="Username"
+            name="username"
+          />
           <input
             className="outline-none border-2 border-dark-green rounded-lg p-2 w-full"
             type="email"
@@ -116,7 +121,9 @@ function Register({setRegister}) {
             name="password"
           />
           <button
-            className="bg-primary hover:bg-dark-green outline-none border-none w-full p-3 px-4 text-white font-semibold flex-1 rounded-md "
+            className={`${
+              isLoading ? "cursor-not-allowed" : "cursor-pointer"
+            } bg-primary hover:bg-dark-green outline-none border-none w-full p-3 px-4 text-white font-semibold flex-1 rounded-md`}
             disabled={isLoading}
           >
             {isLoading ? "Loading" : "Sign Up"}
@@ -126,7 +133,10 @@ function Register({setRegister}) {
 
       <div className="">
         Already have an account?{" "}
-        <span onClick={() => setRegister(false)} className="underline ml-1 font-semibold cursor-pointer">
+        <span
+          onClick={() => setRegister(false)}
+          className="underline ml-1 font-semibold cursor-pointer"
+        >
           Sign In here
         </span>
       </div>
@@ -135,4 +145,3 @@ function Register({setRegister}) {
 }
 
 export default Register;
-
