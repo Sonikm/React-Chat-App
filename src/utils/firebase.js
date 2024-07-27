@@ -6,7 +6,7 @@ import { API_KEY } from "./secrete";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: API_KEY,
+  apiKey: 'AIzaSyD4xvhz4okXsea3PhJKHdUjrApUmIjobC4',
   authDomain: "live-chat-d77f5.firebaseapp.com",
   projectId: "live-chat-d77f5",
   storageBucket: "live-chat-d77f5.appspot.com",
